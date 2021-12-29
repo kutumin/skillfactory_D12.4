@@ -1,0 +1,19 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+{{ flatpage.title }}
+{% endblock title %}
+
+{% block content %}
+    <h2>{{ flatpage.title }}</h2>
+    <hr>
+    <h3>НОВОСТИ</h3>
+    <i>{{ flatpage.content }} </i>
+    <br>
+    <p>здесь будет выгрузка из базы данных</p>  
+    {{news.id}}
+    {{news.article_text|Censor}}
+    <a href="{% url 'update_post_detail' news.id %}"><u>Редактировать</u></a>
+    <a href="{% url 'post_delete' news.id %}"><u> Удалить </u></a>    
+{% endblock content %}

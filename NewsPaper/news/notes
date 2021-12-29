@@ -1,0 +1,9 @@
+@csrf_exempt
+def subsribe_me(request):
+    if request.method == 'POST':
+        form = SubscriberForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/news/')
+            
+    else:
+        return render(request,'subscribe.html', {'form': SubscriberForm()})
