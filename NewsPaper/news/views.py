@@ -156,6 +156,7 @@ class PostAdd(PermissionRequiredMixin, ListView):
             msg.send() 
         return super().get(request, *args, **kwargs)
 
+@login_required
 @csrf_exempt
 def subsribe_me(request):
     if request.method == 'POST':
@@ -168,6 +169,6 @@ def subsribe_me(request):
             Subscriber.objects.create(email=email_entered)
         return HttpResponseRedirect('/news/')         
     else:
-        return render(request,'subscribe.html', {'form': SubscriberForm()})
+        return render(request,'subscribe.html', {'form': SubscriberForm(initial={'email':request.user.email})})
 
 

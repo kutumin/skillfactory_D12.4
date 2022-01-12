@@ -174,3 +174,10 @@ ADMINS = [
     ('kutumin@gmail.com', 'skillfacroty@mail.ru'),]
 SERVER_EMAIL = 'skillfacroty@mail.ru' 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER + '@mail.ru'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
+    }
+}
