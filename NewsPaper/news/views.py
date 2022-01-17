@@ -24,6 +24,7 @@ import datetime
 from .models import Subscriber
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+from django.core.cache import cache
 
 
 @login_required
@@ -65,6 +66,13 @@ class PostDetail(DetailView):
     model = Post
     template_name = 'details_news.html' 
     context_object_name = 'news'
+    queryset = Post.objects.all()
+    def get_object(self, *args, **kwargs): 
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None) 
+        if not obj:
+            obj = super().get_object(queryset=kwargs['queryset']) 
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+        return obj
 
 class PostDetailEdit(DetailView):
     model = Post

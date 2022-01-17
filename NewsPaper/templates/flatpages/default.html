@@ -1,4 +1,5 @@
 {% load static %}
+{% load cache %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,18 +16,22 @@
     <body>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Навигация</div>
-                <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news">Новости</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/search">Поиск и фильтр</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/add">Добавить новость</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/accounts/login">Вход</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/accounts/signup">Регистрация</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/protected_index">Страница пользователя</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/subscribe">Подписаться на рассылку</a>
-                </div>
-            </div>
+            {% cache 30 Sidebar %}
+                {% block Sidebar %}
+                    <div class="border-end bg-white" id="sidebar-wrapper">
+                        <div class="sidebar-heading border-bottom bg-light">Навигация</div>
+                        <div class="list-group list-group-flush">
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news">Новости</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/search">Поиск и фильтр</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/add">Добавить новость</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/accounts/login">Вход</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/accounts/signup">Регистрация</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/protected_index">Страница пользователя</a>
+                            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/news/subscribe">Подписаться на рассылку</a>
+                        </div>
+                    </div>
+                {% endblock Sidebar %}
+            {% endcache %}
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->

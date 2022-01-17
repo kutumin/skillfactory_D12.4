@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from datetime import datetime
+from django.core.cache import cache
 
 # Test
 
@@ -95,6 +96,14 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.post_author}:{self.article_text}'
+    
+    def get_absolute_url(self): 
+        return f'/news/{self.id}'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs) 
+        cache.delete(f'product-{self.pk}')
+    
 
 class PostCategory(models.Model):
 	post = models.ForeignKey(Post, on_delete = models.CASCADE)
