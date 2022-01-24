@@ -67,11 +67,13 @@ class PostDetail(DetailView):
     template_name = 'details_news.html' 
     context_object_name = 'news'
     queryset = Post.objects.all()
-    def get_object(self, *args, **kwargs): 
-        obj = cache.get(f'post-{self.kwargs["pk"]}', None) 
+    
+    def get_object(self, *args, **kwargs):
+        obj = cache.get(f'news-{self.kwargs["pk"]}', None) 
         if not obj:
-            obj = super().get_object(queryset=kwargs['queryset']) 
-            cache.set(f'post-{self.kwargs["pk"]}', obj)
+            obj = super().get_object(queryset=self.queryset) 
+            cache.set(f'news-{self.kwargs["pk"]}', obj)
+        
         return obj
 
 class PostDetailEdit(DetailView):
@@ -158,8 +160,8 @@ class PostAdd(PermissionRequiredMixin, ListView):
             msg = EmailMultiAlternatives(
                 subject='новая новость!',
                 body=html_content,
-                from_email='skillfacroty@mail.ru',
-                to=['skillfacroty@mail.ru',])
+                from_email='skillfactory88@mail.ru',
+                to=['skillfactory88@mail.ru',])
             msg.attach_alternative(html_content, "text/html")
             msg.send() 
         return super().get(request, *args, **kwargs)

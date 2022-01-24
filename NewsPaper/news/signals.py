@@ -13,7 +13,7 @@ def notify_subscribers(sender, instance, created, **kwargs):
         msg = EmailMultiAlternatives(
             subject='Рассылка по Subscribers',
             body=html_content,
-            from_email='skillfacroty@mail.ru',
+            from_email='skillfactory88@mail.ru',
             to=[sub.email,])
         msg.attach_alternative(html_content, "text/html")
         msg.send()

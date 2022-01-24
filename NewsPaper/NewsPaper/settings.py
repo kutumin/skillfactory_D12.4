@@ -160,19 +160,19 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 ACCOUNT_FORMS = {'signup': 'news.models.BaseRegisterForm'}
 
 EMAIL_HOST = 'smtp.mail.ru' 
 EMAIL_PORT = 465 
-EMAIL_HOST_USER = 'skillfacroty'
-EMAIL_HOST_PASSWORD = 'B7T0JMLFQEqd8BYYxckg'
+EMAIL_HOST_USER = 'skillfactory88'
+EMAIL_HOST_PASSWORD = 'KKbrS5Nb5iy03wh7WQwz'
 EMAIL_USE_SSL = True
 
 ADMINS = [
-    ('kutumin@gmail.com', 'skillfacroty@mail.ru'),]
-SERVER_EMAIL = 'skillfacroty@mail.ru' 
+    ('kutumin@gmail.com', 'skillfactory88@mail.ru'),]
+SERVER_EMAIL = 'skillfactory88@mail.ru' 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER + '@mail.ru'
 
 CACHES = {
